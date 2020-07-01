@@ -1,3 +1,19 @@
 /target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
 /Java-et-les-bases-de-donnees-avec-JDBC-Hibernate-et-JPA.iml
 /.idea/sonarlint/issuestore/index.pb
+/.idea/compiler.xml
+/.idea/misc.xml
+/.idea/libraries/Maven__org_junit_junit5_api_5_0_0_ALPHA.xml
+/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_13.xml
+/.idea/libraries/Maven__com_google_protobuf_protobuf_java_3_6_1.xml
+/.idea/libraries/Maven__org_junit_junit_commons_5_0_0_ALPHA.xml
+/quelques portion de code pour débuter/dependance-maven-mysql-8.txt
+/.idea/libraries/Maven__org_opentest4j_opentest4j_1_0_0_ALPHA.xml
+/quelques portion de code pour débuter/dependance-maven-postgres-9.txt
+/.idea/workspace.xml
+/.idea/jarRepositories.xml
+/.idea/modules.xml
+/.idea/sonarIssues.xml
+/.idea/Java-et-les-bases-de-donnees-avec-JDBC-Hibernate-et-JPA.iml
+/.idea/vcs.xml
+/quelques portion de code pour débuter/dependance-maven-oracle-thin-18.3.txt

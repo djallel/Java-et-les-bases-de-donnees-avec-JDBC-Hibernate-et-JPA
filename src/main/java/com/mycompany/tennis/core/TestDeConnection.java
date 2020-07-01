@@ -1,27 +1,37 @@
 package com.mycompany.tennis.core;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class TestDeConnection {
+
     public static void main(String... args){
-        Connection conn = null;
+
+        Connection conn=null;
         try {
-            //Seulement avant Java 7/JDBC 4 
-            //Class.forName(DRIVER_CLASS_NAME);
-            
-            //MySQL driver MySQL Connector
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/tennis?useSSL=false","COURSDB","COURSDB");
-            //Oracle Driver officiel OJDBC Thin
-            //conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:tennis","COURSDB","COURSDB");
-            //Postgres Driver officiel
-            //conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/tennis","COURSDB","COURSDB");
+//            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/tennis?useSSL=false", "root", "root");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/tennis?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=Europe/Paris","root","root");
+
+
+            Statement statement=conn.createStatement();
+			ResultSet rs=statement.executeQuery("SELECT NOM,PRENOM,ID FROM JOUEUR WHERE ID=12");
+
+            if (rs.next()){
+                final String nom=rs.getString("NOM");
+                final String prenom=rs.getString("PRENOM");
+                final Long id=rs.getLong("ID");
+                System.out.println("Le joueur / la joueuse représenté(e) par le numéro "+id+" est "+prenom+" "+nom);
+            }
+            else {
+                System.out.println("Il n'y a pas d'enregistrement d'ID 128");
+            }
+
             System.out.println("success");
-        } catch (SQLException e) {
+        }
+        catch (SQLException e){
             e.printStackTrace();
         }
         finally {
+
             try {
                 if (conn!=null) {
                     conn.close();
@@ -32,4 +42,3 @@ public class TestDeConnection {
         }
     }
 }
-
