@@ -1,6 +1,7 @@
 package com.mycompany.tennis.core;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
+import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.sql.*;
 
@@ -13,13 +14,18 @@ public class TestDeConnection {
 //            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/tennis?useSSL=false", "COURSDB", "COURSDB");
 //            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/tennis?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=Europe/Paris","root","root");
 
-            MysqlDataSource dataSource = new MysqlDataSource();
+         /* MysqlDataSource dataSource = new MysqlDataSource();
             dataSource.setServerName("localhost");
             dataSource.setPort(3306);
             dataSource.setDatabaseName("tennis");
             dataSource.setUseSSL(false);
             dataSource.setServerTimezone("Europe/Paris");
             dataSource.setUser("root");
+            dataSource.setPassword("root"); */
+
+            BasicDataSource dataSource = new BasicDataSource();
+            dataSource.setUrl("jdbc:mysql://localhost:3306/tennis?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=Europe/Paris");
+            dataSource.setUsername("root");
             dataSource.setPassword("root");
 
             conn=dataSource.getConnection();
