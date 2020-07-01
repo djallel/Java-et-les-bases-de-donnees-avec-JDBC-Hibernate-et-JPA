@@ -10,6 +10,7 @@ public class TestDeConnection {
         try {
 //            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/tennis?useSSL=false", "COURSDB", "COURSDB");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/tennis?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=Europe/Paris","root","root");
+            conn.setAutoCommit(false);
             PreparedStatement preparedStatement=conn.prepareStatement("SELECT NOM,PRENOM,ID FROM JOUEUR where ID=?");
             long identifiant=28L;
             preparedStatement.setLong(1,identifiant);
@@ -27,9 +28,17 @@ public class TestDeConnection {
             }
 
             System.out.println("success");
+            conn.commit();
         }
         catch (SQLException e){
             e.printStackTrace();
+            try {
+                if (conn!=null){
+                    conn.rollback();
+                }
+            }catch (SQLException  e1){
+                e1.printStackTrace();
+            }
         }
         finally {
 
