@@ -17,6 +17,7 @@ public class TestDeConnection {
             dataSource.setServerName("localhost");
             dataSource.setPort(3306);
             dataSource.setDatabaseName("tennis");
+            dataSource.setUseSSL(false);
             dataSource.setServerTimezone("Europe/Paris");
             dataSource.setUser("root");
             dataSource.setPassword("root");
