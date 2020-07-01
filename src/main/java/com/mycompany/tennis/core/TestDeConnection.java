@@ -8,12 +8,13 @@ public class TestDeConnection {
 
         Connection conn=null;
         try {
-//            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/tennis?useSSL=false", "root", "root");
+//            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/tennis?useSSL=false", "COURSDB", "COURSDB");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/tennis?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=Europe/Paris","root","root");
+            PreparedStatement preparedStatement=conn.prepareStatement("SELECT NOM,PRENOM,ID FROM JOUEUR where ID=?");
+            long identifiant=28L;
+            preparedStatement.setLong(1,identifiant);
 
-
-            Statement statement=conn.createStatement();
-			ResultSet rs=statement.executeQuery("SELECT NOM,PRENOM,ID FROM JOUEUR WHERE ID=12");
+            ResultSet rs=preparedStatement.executeQuery();
 
             if (rs.next()){
                 final String nom=rs.getString("NOM");
@@ -22,7 +23,7 @@ public class TestDeConnection {
                 System.out.println("Le joueur / la joueuse représenté(e) par le numéro "+id+" est "+prenom+" "+nom);
             }
             else {
-                System.out.println("Il n'y a pas d'enregistrement d'ID 128");
+                System.out.println("Il n'y a pas d'enregistrement d'ID "+identifiant);
             }
 
             System.out.println("success");
