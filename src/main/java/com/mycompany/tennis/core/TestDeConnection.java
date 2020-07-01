@@ -1,5 +1,7 @@
 package com.mycompany.tennis.core;
 
+import com.mysql.cj.jdbc.MysqlDataSource;
+
 import java.sql.*;
 
 public class TestDeConnection {
@@ -9,7 +11,18 @@ public class TestDeConnection {
         Connection conn=null;
         try {
 //            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/tennis?useSSL=false", "COURSDB", "COURSDB");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/tennis?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=Europe/Paris","root","root");
+//            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/tennis?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=Europe/Paris","root","root");
+
+            MysqlDataSource dataSource = new MysqlDataSource();
+            dataSource.setServerName("localhost");
+            dataSource.setPort(3306);
+            dataSource.setDatabaseName("tennis");
+            dataSource.setServerTimezone("Europe/Paris");
+            dataSource.setUser("root");
+            dataSource.setPassword("root");
+
+            conn=dataSource.getConnection();
+
             conn.setAutoCommit(false);
             PreparedStatement preparedStatement=conn.prepareStatement("SELECT NOM,PRENOM,ID FROM JOUEUR where ID=?");
             long identifiant=28L;
